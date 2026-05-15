@@ -1,0 +1,766 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI for Kids</title>
+	<!--pta-123-->
+	<!--pta-000-->
+	<!--pta-122-->
+	<!--pta-332-->
+	<style>
+		*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		}
+		body{
+		font-family: 'Arial', sans-serif;
+		background-color: aliceblue;
+		text-align: center;
+		color: white;
+		overflow-x: hidden;
+		}
+		.robot{
+		font-size: 90px;
+		margin-top: 20px;
+		animation: float 3s ease-in-out infinite;
+		}
+		.hero{
+		min-height: 70vh;
+		background: midnightblue;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		position: relative;
+		overflow: hidden;
+		}
+		.hero span{
+		color: #FFD93D;
+		}
+		.hero h1{
+		font-size: 50px;
+		}
+		.btn{
+		display: inline-block;
+		background-color: #FFD93D;
+		color: midnightblue;
+		padding: 15px 30px;
+		font-size: 18px;
+		border-radius: 50px;
+		text-decoration: none;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+		margin-top: 30px;
+		}
+		.btn:hover{
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+		}
+		.section{
+		padding:3.5rem;
+		max-width:960px;
+		margin: 0 auto;
+		}
+		.section-badge {
+		display:inline-block;
+		background: purple;
+		color: white;
+		font-size:20px;
+		padding: 4px 16px;
+		border-radius: 30px;
+		margin: 0px;
+		text-align: left;
+		}
+		.section-title{
+		font-size: 36px;
+		color: black;
+		font-weight: bold;
+		font-size: 40px;
+		margin: 0px auto;
+		text-align: left;
+		}
+		.section-description{
+		font-size: 18px;
+		color: dimgray;
+		max-width: 1200px;
+		margin: 20px auto;
+		text-align: left;
+		}
+
+		.cards-grid-page1{
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 20px;
+		flex-wrap: wrap;
+		margin: 40px auto;
+		max-width: 1200px;
+		padding: 0 20px;
+		text-align: left;
+		width: 95%;
+		}
+		.card{
+		background: white;
+		border-radius: 20px;
+		padding: 20px 30px;
+		text-align: center;
+		box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+		color: slategray;
+		width: 250px;
+		}
+		.card:hover{
+		box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+		}
+		.card-icon{
+		font-size: 40px;
+		margin-bottom: 20px;
+		}
+		.card h3{
+		font-size: 24px;
+		margin-bottom: 10px;
+		color:dimgray;
+		}
+		.card p{
+		font-size: 16px;
+		}
+		.card.c1{border: 2.5px solid lightblue;}
+		.card.c2{border: 2.5px solid lightcoral;}
+		.card.c3{border: 2.5px solid lightgreen;}
+		.card.c4{border: 2.5px solid lightgoldenrodyellow;}
+
+		.page2{
+		position: relative;
+		padding-left: 10px;
+		}
+		.timeline-item{
+		position: relative;
+		margin-bottom: 40px;
+		padding-left: 40px;
+		background: white;
+		border-radius: 20px;
+		box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+		}
+		.timeline-item::before{
+		content: attr(data-num);
+		position: absolute;
+		left: -40px;
+		top: 40%;
+		width: 28px;
+		height: 28px;
+		background: purple;
+		color: white;
+		display: flex;
+		border-radius: 50%;
+		align-items: center;
+		justify-content: center;
+		transform: translateY(-50%);
+		}
+		.timeline-item h3{
+		margin-bottom: 15px;
+		color: darkslategray;
+		text-align: left;
+		padding-top: 10px;
+		font-size: 22px;
+		}
+		.timeline-item p{
+		font-size: 18px;
+		color: slategray;
+		text-align: left;
+		line-height: 1.3;
+		}
+		.timeline-icon{
+		font-size: 40px;
+		margin-left: 20px;
+		float: right;
+		}
+		.jobs{
+		background:lavender;
+		border-radius: 28px;
+		padding: 25px;
+		}
+		.jobs-grid{
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 20px;
+		margin-top: 1.8rem;
+		}
+		.job-card{
+		background: white;
+		border-radius: 20px;
+		padding: 1.4rem;
+		box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+		}
+		.job-card:hover{
+		box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+		}
+		.job-icon1, .job-icon2, .job-icon3, .job-icon4, .job-icon5, .job-icon6{
+		font-size: 30px;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 14px;
+		background:lavenderblush;
+		}
+		.job-card h3{
+		font-size: 18px;
+		margin-bottom: 10px;
+		color: darkslategray;
+		}
+		.job-card p{
+		font-size: 14px;
+		color: slategray;
+		line-height: 1.3;
+		}
+		.facts{
+		background:midnightblue;
+		border-radius: 28px;
+		padding: 30px;
+		color: white;
+		}
+		.facts .section-badge{
+		background: #FFD93D;
+		color: midnightblue;
+		}
+		.facts .section-title{
+		color: white;
+		font-size: 36px;
+		}
+		.facts .section-description{
+		color: beige;
+		font-size: 18px;
+		margin-left: 10px;
+		}
+		.facts-grid{
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+		gap: 20px;
+		}
+		.fact-card{
+		background: midnightblue;
+		border-radius: 16px;
+		padding: 20px;
+		border: 2px solid;
+		text-align: center;
+		border-color: gray;
+		}
+		.fact-card:hover{
+		border-color: darkslategray;
+		}
+		.fact-num{
+		font-size: 28px;
+		font-weight: bold;
+		color: #FFD93D;
+		line-height: 1.2;
+		margin-bottom: 10px;
+		}
+		.fact-lable{
+		font-size: 14px;
+		color: white;
+		line-height: 1.3;
+
+		}
+       
+		
+		
+.quiz-box {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+#quiz-q {
+    font-size: 24px;
+    color: midnightblue;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px;
+    border: none;
+}
+
+
+.quiz-opt {
+    background: #f0f4f8;
+    border: 2px solid #d1d9e6;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quiz-opt:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+.quiz-opt.correct {
+    background-color: #2ecc71 !important;
+    color: white;
+    border-color: #27ae60;
+}
+
+.quiz-opt.wrong {
+    background-color: #e74c3c !important;
+    color: white;
+    border-color: #c0392b;
+}
+
+.quiz-next {
+    display: inline-block;
+    background: linear-gradient(135deg, #6a5acd, #9b59b6); 
+    color: white;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px; 
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3); 
+    transition: all 0.3s ease;
+    margin: 20px auto;
+}
+
+
+.quiz-next:hover {
+    transform: scale(1.05); 
+    background: linear-gradient(135deg, #5b4dbd, #8e44ad);
+    box-shadow: 0 8px 20px rgba(106, 90, 205, 0.4);
+}
+
+
+.quiz-nav {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
+    flex-direction: column; 
+}
+.quiz-score{
+	font-size: 18px;
+	color:dimgray;
+
+}
+#future-engineer-poll h3{
+	color:midnightblue;
+	margin: 15px;
+
+}
+#poll-thanks{
+	color:midnightblue;
+}
+
+.poll-btns {
+
+    justify-content: center;
+    gap: 15px; 
+    margin-top: 20px;
+}
+
+
+.poll-btn {
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px; 
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+}
+
+
+.poll-btn-yes {
+    background:  linear-gradient(135deg, #5b4dbd, #8e44ad);;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+
+.poll-btn-maybe {
+    background:  linear-gradient(135deg, #5b4dbd, #8e44ad);;
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+
+.poll-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+	</style>
+</head>
+<body>
+
+	
+	<div class="hero">
+		<div class="robot"> 🤖</div>
+		<h1> 
+		Welcome to<br/> <span> AI world for kids! </span>  </h1>
+		<p>
+			Discover the amazing world of Artificial Intelligence — and the incredible engineers who build it!
+		</p>
+	</div>
+
+    <section id="what-s-ai">
+	<div class="section"> 
+		<div class="page1">
+
+			<span class="section-badge"> Chapter 1 </span>
+			<h2 class="section-title">What is AI? 🧠 </h2>
+			<p class="section-description">Artificial Intelligence is a technology that allows computers or robots to learn,
+				 think, and perform some tasks in a way similar to humans, such as understanding speech, recognizing images, answering questions, 
+				and helping people in their daily lives.
+			 </p>
+			
+		</div>
+
+		<div class="cards-grid-page1">
+			<div class="card c1">
+				<span class="card-icon">📚 </span>
+				<h3>It Learns </h3>
+				<p>
+					Artificial Intelligence learns by looking at many examples and practicing again and again.
+                    
+				</p>
+
+			</div>
+			<div class="card c2">
+				<span class="card-icon">💬</span>
+				<h3>It Understands </h3>
+				<p>
+					AI can understand your words, answer questions,
+					and even write stories or poems for you.
+				</p>
+			</div>
+			<div class="card c3">
+				<span class="card-icon">👁️</span>
+				<h3>It Sees </h3>
+				<p>
+					AI can look at photos and tell you what's in them
+					— like spotting a dog, a car, or your face!
+				</p>
+			</div>
+			<div class="card c4">
+				<span class="card-icon">🎮</span>
+				<h3>It plays </h3>
+				<p>
+					AI can play games like chess and video games
+					— and it gets better and better the more it plays!
+				</p>
+
+			</div>
+		</div>
+    </div>
+    </section>
+
+
+	<section id="how-does-ai-work">
+		<div class="section"> 
+		<div class="page2">
+			<span class="section-badge"> Chapter 2 </span>
+			<h2 class="section-title">How Does AI Work?⚙️  </h2>
+			<p class="section-description">
+				Think of training an AI like teaching a puppy new tricks — it takes data
+				, practice, and lots of patience!
+			</p>
+		</div>
+
+		<div class="timeline-page2">
+			<div class="timeline-item" data-num="1">
+				<span class="timeline-icon">📦 </span>
+				<h3>Collect Data</h3>
+				<p>
+					Engineers gather millions of examples — pictures, text, sounds —
+					to teach the AI. The more data, the smarter it gets!
+				</p>
+			</div>
+			<div class="timeline-item" data-num="2">
+				<span class="timeline-icon">🏋 </span>
+				<h3>Train the Model</h3>
+				<p>
+					The AI practices with all that data — making guesses, getting feedback,
+					and slowly getting better. This can take days on giant computers!
+				</p>
+			</div>
+			<div class="timeline-item" data-num="3">
+				<span class="timeline-icon">🧪 </span>
+				<h3>Test it out</h3>
+				<p>
+					Engineers test the AI with new examples it has never seen before to make sure
+					it's learning correctly and safely.
+				</p>
+			</div>
+			<div class="timeline-item" data-num="4">
+				<span class="timeline-icon">🚀 </span>
+				<h3>Share with the World</h3>
+				<p> Once the AI is good and safe, engineers release it so people all over the world can use it to learn
+				, create, and solve problems!</p>
+			</div>
+			
+		</div>
+		</div>
+	</section>
+
+
+	<section id="ai engineer">
+		<div class="section"> 
+		<div class="jobs">
+			<span class="section-badge"> Chapter 3 </span>
+			<h2 class="section-title"> Meet the AI Engineer 👩‍💻👨‍💻</h2>
+			<p class="section-description">  AI doesn't build itself — it needs a whole team of amazing people with different superpowers.
+			Maybe one of these jobs is perfect for YOU someday!  </p>
+		</div>
+
+		<div class=" jobs-grid">
+			
+			<div class="job-card">
+				<div class="job-icon1">🔎 </div>
+				<div>
+					<h3> AI Researcher</h3>
+					<p> He is the "inventor" who thinks of new ideas that no one as thought before, and always asks:
+						"What if the computer could do this ? "
+					</p>
+				</div>
+			</div>
+
+			<div class="job-card"> 
+				<div class="job-icon2">💻 </div>
+				<div>
+					<h3> Machine Learning Engineer</h3>
+					<p>
+						 
+						He is the "coach" who teach computer how to learn on its own, just like a sport coach
+						who sets up a training plane for the players
+					</p>
+				</div>
+				</div>
+
+			<div class="job-card">
+				<div class="job-icon3"> 📊</div>
+				<div>
+					<h3> Data Scientist</h3>
+					<p>
+						
+						He is the explorer who searches through mountains of information and numbers to find useful
+						patterns tat help the computer learn
+					</p>
+				</div>
+			</div>
+			
+				<div class="job-card">
+					<div class="job-icon4">🎨 </div>
+			<div>
+				<h3> AI Product Designer</h3>
+				<p> 
+				 He is the artist who makes using AI programs fun and easy for every one to use</p>
+			</div>
+				</div>
+			
+					<div class="job-card">
+						<div class="job-icon5">🛡️ </div>
+			<div>
+				<h3>AI Safety Engineer</h3>
+				<p>
+					Makes sure AI is safe, fair, and helpful and that it never does anything
+					harmful. A very important job!</p>
+			</div>
+					</div>
+
+			<div class="job-card">
+				<div class="job-icon6">❤️ </div>
+				<div>
+					<h3> The AI Detective</h3>
+					<p>
+						
+						He is the researcher seeks to identify " bias" or errors that cause the computert unfairly
+
+					</p>
+				</div>
+			</div>				
+	
+			</div>
+		</div>
+	</section>	
+
+		<section>
+			<div class="section"> 
+			<div class="facts">
+				<span class="section-badge">Fun fact </span>
+				<h2 class="section-title"> Mind-Blowing AI Numbers! 🤯</h2>
+				<p class="section-description" > The world of AI is absolutely enormous. Here are some amazing facts!</p>
+				<div class="facts-grid">
+
+					<div class="fact-card">
+						<div class="fact-num">The Planet Hunt 🪐 </div>
+						<div class="fact-label"> AI acts like a super-telescope!
+							It looks at thousands of stars and helps us to find new and hidden planets</div>
+					</div>
+
+					<div class="fact-card">
+						<div class="fact-num"> Voice Magic 🎤</div>
+						<div class="fact-lable">
+							Ai can learn exactly how you sound!
+							it can make robot sing your favourit song or speak any language
+						
+						</div>
+					</div>
+
+					<div class="fact-card">
+						<div class="fact-num"> 2030 </div>
+						<div class="fact-lable">
+							By this year, millions of new AI engineer jobs will be created!
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+		  </div>
+
+		</section>
+
+         
+        <section>
+		<div class="section">
+			<span class="section-badge"> Quiz Time!</span>
+			<h2 class="section-title">Test your knowledge </h2>
+			<p class="section-description">You learned a lot today, didn't you?🤔
+				Time to see what you remembere about the world of AI, let's begin the challenge </p>
+		</div>
+		</section>
+	
+		<section>
+
+		<div class="quiz-box">
+
+			<p class="quiz-question" id="quiz-q"> </p>
+
+			<div class="quiz-options" id="quiz-opts"> </div>
+			<div class="quiz-feedback" id="quiz-fb"> </div>
+			<div class="quiz-nav"> 
+			<button class="quiz-next" id="quiz-next" style="display:none"> Next Question </button>
+			<span class="quiz-score" id="quiz-score"> </span>
+            </div>
+			<div class="poll-container" id="future-engineer-poll" style="display: none;"> 
+				<hr style="margin: 20px 0; border:0; border-top:1px solid whitesmoke;">
+				<h3> Now, Do you want to be an AI engineer in the future like me 🤔</h3>
+				<div class="poll-btns">
+                 <button class="poll-btn poll-btn-yes"onclick="selectpoll('yes')">yes!😍 </button>
+				 <button class="poll-btn poll-btn-maybe"onclick="selectpoll('maybe')">maybe one day❤️ </button>
+				 </div>
+				 <div id="poll-thanks"> </div>
+			</div>
+		
+		</section>
+        
+		<script> 
+        const questions = [
+        { q: "What does 'AI' stand for?", opts: ["Amazing Invention", "Artificial Intelligence", "Automatic Internet", "Animal Instinct"], ans: 1 },
+        { q: "How does AI learn things?", opts: ["By reading books at night", "By watching TV all day", "By studying millions of examples", "By asking its mum"], ans: 2 },
+        { q: "Which job involves keeping AI safe and fair?", opts: ["Data Scientist", "AI Safety Engineer", "Product Designer", "AI Researcher"], ans: 1 },
+    
+         { q: "What do AI engineers need to build AI?", opts: ["Magic spells", "Lots of data", "Lucky charms", "Colourful crayons"], ans: 1 },
+];
+
+let qIdx = 0, score = 0, answered = false;
+
+function loadQ() {
+  answered = false;
+  const q = questions[qIdx];
+  document.getElementById('quiz-q').textContent = `Q${qIdx+1}: ${q.q}`;
+  document.getElementById('quiz-fb').textContent = '';
+  document.getElementById('quiz-next').style.display = 'none';
+  document.getElementById('quiz-score').textContent = `Score: ${score}/${questions.length}`;
+  const opts = document.getElementById('quiz-opts');
+  opts.innerHTML = '';
+  q.opts.forEach((o, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = o;
+    btn.onclick = () => answer(i);
+    opts.appendChild(btn);
+  });
+}
+
+function answer(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIdx];
+  const btns = document.querySelectorAll('.quiz-opt');
+  btns.forEach((b, idx) => {
+    if (idx === q.ans) b.classList.add('correct');
+    else if (idx === i && i !== q.ans) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('quiz-fb');
+  if (i === q.ans) {
+    score++;
+    fb.style.color = '#28a745';
+    fb.textContent = '🎉 Correct! Well done!';
+  } else {
+    fb.style.color = '#dc3545';
+    fb.textContent = '😬 Not quite — the green one is right!';
+  }
+  document.getElementById('quiz-score').textContent = `Score: ${score}/${questions.length}`;
+  const next = document.getElementById('quiz-next');
+  next.style.display = 'inline-block';
+  next.textContent = qIdx < questions.length - 1 ? 'Next Question ➡️' : 'See Final Score 🏆';
+}
+
+document.getElementById('quiz-next').addEventListener('click', () => {
+  qIdx++;
+  if (qIdx < questions.length) {
+    loadQ();
+  } else {
+    const pct = Math.round((score / questions.length) * 100);
+    document.getElementById('quiz-q').textContent = `Quiz Complete! You scored ${score} out of ${questions.length}! (${pct}%)`;
+    document.getElementById('quiz-opts').innerHTML = pct >= 80
+      ? '<p style="font-size:1.1rem;color:#28a745;font-weight:700;">🌟 Amazing! You\'re a future AI engineer!</p>'
+      : '<p style="font-size:1.1rem;color:#9B59B6;font-weight:700;">📚 Good effort! Read through the page again and try once more!</p>';
+    document.getElementById('quiz-fb').textContent = '';
+    const next = document.getElementById('quiz-next');
+    next.textContent = 'Play Again 🔄';
+    next.style.display = 'inline-block';
+    next.onclick = () => { qIdx = 0; score = 0; loadQ(); next.onclick = null; document.getElementById('quiz-next').addEventListener('click', () => { qIdx++; if (qIdx < questions.length) loadQ(); }); };
+    document.getElementById('future-engineer-poll').style.display='block';
+ }
+});
+loadQ();
+
+function selectpoll(choice){
+	const thanks=document.getElementById('poll-thanks');
+	if(choice==='yes'){
+		thanks.innerHTML="That's Amazing! you could build the future🚀 🌍 ";
+	}
+	else{
+		thanks.innerHTML="No worries!Keep exploring ,the future is big 💡";
+	}
+	document.querySelector('.poll-btns').style.display='none';
+}
+
+
+		</script>
+	
+	
+	
+	
+</body>
+</html>
